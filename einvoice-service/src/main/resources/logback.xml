@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/basic.xml" />
+    
+    <!-- spring boot日志 -->
+    <property name="LOG_PATH" value="logs"/>
+    <property name="LOG_FILE" value="${LOG_PATH}/einvoice.log}"/>
+	<property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } [%t] --- %-40.40logger{39} : %msg%n"/>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] - %m%n</pattern>
+
+			<!-- 常用的Pattern变量,大家可打开该pattern进行输出观察 -->
+			<!--
+              <pattern>
+                  %d{yyyy-MM-dd HH:mm:ss} [%level] - %msg%n
+                  Logger: %logger
+                  Class: %class
+                  File: %file
+                  Caller: %caller
+                  Line: %line
+                  Message: %m
+                  Method: %M
+                  Relative: %relative
+                  Thread: %thread
+                  Exception: %ex
+                  xException: %xEx
+                  nopException: %nopex
+                  rException: %rEx
+                  Marker: %marker
+                  %n
+
+              </pattern>
+               -->
+		</encoder>
+	</appender>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${LOG_FILE}.%i</fileNamePattern>
+			<minIndex>1</minIndex>
+      		<maxIndex>2000</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+	
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>
