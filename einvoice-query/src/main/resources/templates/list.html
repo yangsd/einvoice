@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://www.chaxunfapiao.com/ -->
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>江财电子发票平台</title>
+
+    <link href="/css/mycss.css" th:href="@{/css/mycss.css}" rel="stylesheet" type="text/css"/>
+    <script src="/js/jquery-3.0.0.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <link rel="icon" th:href="@{/image/favicon.ico}" type="image/x-icon"/>
+</head>
+<body>
+    <div class="epmaindiv-st2" style="">
+        <div class="divimg-st2"><img th:src="@{/image/logo.png}" alt=""/></div>
+        <div class="divbtncheck-st2">
+            <form id="search" action="/search" method="post">
+                <input type="text" class="order-select" name="orderno" value="" id="mytxtorder" onblur="CheckLenght()" placeholder="输入订单号"/>
+            </form>
+            <input type="button" class="download" name="btnsearch" value="查询" id="btnclick"/>
+        </div>
+        <div class="divtable-st2">
+            <table cellspacing="1">
+                <thead>
+                    <tr>
+                        <td>选择</td>
+                        <td>销方名称</td>
+                        <td>交易日期</td>
+                        <td>开票日期</td>
+                        <td>平台单号</td>
+                        <td>金额合计</td>
+                        <td>税额合计</td>
+                        <td>价税合计</td>
+                        <td>发票类型</td>
+                        <td>发票代码</td>
+                        <td>发票号码</td>
+                        <td>下载PDF文件</td>
+                    </tr>
+                </thead>
+                <tbody id="dtbodyvalu">
+                    <tr  bg="#f3f1f1" th:each="vo:${list}">
+                        <td style="width: 50px; background-color: rgb(243, 241, 241);">
+                            <input type="checkbox" checked="checked"/></td>
+                        <td style="width: 220px; background-color: rgb(243, 241, 241);" th:text="${vo.xsf_mc}"/>
+                        <td style="background-color: rgb(243, 241, 241);" th:text="${#dates.format(vo.submitdate, 'yyyy-MM-dd HH:mm:ss')}"/>
+                        <td style="background-color: rgb(243, 241, 241);" th:text="${#dates.format(vo.kprq, 'yyyy-MM-dd HH:mm:ss')}"/>
+                        <td style="background-color: rgb(243, 241, 241);" th:text="${vo.order_no}"/>
+                        <td style="background-color: rgb(243, 241, 241);" th:text="${vo.hjje}"/>
+                        <td style="background-color: rgb(243, 241, 241);" th:text="${vo.hjse}"/>
+                        <td style="background-color: rgb(243, 241, 241);" th:text="${vo.jshj}"/>
+                        <td style="background-color: rgb(243, 241, 241);" th:switch="${vo.kplx}"><span th:case="0">蓝票</span><span th:case="1">红票</span></td>
+                        <td style="background-color: rgb(243, 241, 241);" th:text="${vo.fp_dm}"/>
+                        <td style="background-color: rgb(243, 241, 241);" th:text="${vo.fp_hm}"/>
+                        <td style="width: 220px; background-color: rgb(243, 241, 241);"><a th:href="@{/download/}+${vo.pk_einvoicehead}">下载</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="divtable-st2">
+            <table cellspacing="1">
+                <thead>
+                    <tr bgcolor="#f3f1f1">
+                        <td style="background-color: rgb(243, 241, 241);">序号</td>
+                        <td style="background-color: rgb(243, 241, 241);">商品名称</td>
+                        <td style="background-color: rgb(243, 241, 241);">规格型号</td>
+                        <td style="background-color: rgb(243, 241, 241);">单价</td>
+                        <td style="background-color: rgb(243, 241, 241);">数量</td>
+                        <td style="background-color: rgb(243, 241, 241);">税率</td>
+                        <td style="background-color: rgb(243, 241, 241);">税额</td>
+                        <td style="background-color: rgb(243, 241, 241);">价税合计</td>
+                    </tr>
+                </thead>
+                <tbody id="dtbodyvadetaillu">
+                    <tr bg="#fff" th:each="vo:${bodys}">
+                        <td th:text="${vo.row_no}"/>
+                        <td style="width:220px;" th:text="${vo.xmmc}"/>
+                        <td th:text="${vo.ggxh}"/>
+                        <td th:text="${vo.xmdj}"/>
+                        <td th:text="${vo.xmsl}"/>
+                        <td th:text="${vo.sl}"/>
+                        <td th:text="${vo.se}"/>
+                        <td th:text="${vo.xmje}"/>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    var OrderNum = "";
+    document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) {
+            $("#btnclick").click(function(){
+                $("#search").submit();
+            });
+        }
+    };
+    $("#btnclick").click(function(){
+        $("#search").submit();
+    });
+    //console.log(CurrHeight);
+    function CheckLenght() {
+        $("#btnclick").bind("click", function () {
+            var txtvaluse = $("#mytxtorder").val();
+
+            if (txtvaluse.length > 35) {
+                alert("您输入的订单号长度超过了限制");
+                return false;
+            }
+        });
+    }
+
+    /*]]>*/
+</script>
+
+<div id="divtipmongolia" style="position: absolute; z-index: 6666; opacity: 0.6; top: 0px; bottom: 0px; right: 0px; left: 0px; display: none; background-color: rgb(0, 0, 0);"><div style="margin-top:25%;text-align:center;">
+    <img th:src="@{/image/xuloading.gif}"/></div>
+</div>
+</body>
+</html>

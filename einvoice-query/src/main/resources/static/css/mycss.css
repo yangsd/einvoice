@@ -1,0 +1,113 @@
+*{margin: 0;padding: 0;}
+body{font-size: 13px; color: #000;}
+a{text-decoration: none;color: #3c3c3c}
+input[type="submit"],input[type="reset"],input[type="button"],select,button {-webkit-appearance: none;}
+.divimg{width: 100%; text-align: center; margin: 100px auto 10px auto;}
+.divimg img{width: auto;}
+
+.divimg-st2{ float: left; }
+.divimg-st2 img{width: 180px;}
+.divbtncheck {
+    /*text-align: center;*/
+    /*border: 1px solid #f00;*/
+    overflow: hidden;
+    width: 520px;
+    margin: 0 auto;
+}
+.divbtncheck-st2{ 
+    margin-left: 180px;
+    overflow: hidden;
+    /*width: 700px;*/    
+}
+.epmaindiv-st2{margin: 20px 50px;min-width:900px;}
+.order-select {
+    display: inline;
+    width: 360px;
+    border: 1px solid #199dee;
+    background: url(../images/icon1.png) no-repeat 13px 5px;
+    color: #a09797;
+    font: 14px "微软雅黑";
+    outline: none;
+    float: left;
+    padding: 10px 0px 10px 40px;
+}
+
+.download {
+    cursor: pointer;
+    width: 100px;
+    height: 41px;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    background: #48b0f7;
+    font: 14px "微软雅黑";
+    float:left;
+}
+.downloadup {
+    display:none;
+}
+.downloadup-st2 {
+    cursor: pointer;
+    height: 42px;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    background: #48b0f7;
+    font: 14px "微软雅黑";
+    margin-left:20px;
+    padding:0px 25px;
+}
+.divtable{display: none;}
+.divtable-st2{ background: #ddd;margin-top:40px;}
+table{ width: 100%; }
+table tr td {
+    background: #FFF;
+   /* width: 160px;*/
+    height: 36px;
+    text-align: center;
+}
+table tbody tr{cursor:pointer; }
+.divfoot-st2{display: none;}
+.divfoot{
+    margin-top: 250px;
+    text-align: center;
+    padding: 20px;
+    color: #3c3c3c;
+    font: 12px "微软雅黑";
+    line-height: 24px;
+
+}
+.divfootsConust a{
+	padding: 5px 10px;
+}
+.divfootsaddphone{ margin:15px  auto; }
+.divfootsaddphone span{
+	padding: 5px 10px;
+	line-height: 30px;
+	overflow: hidden;
+}
+.divfootsaddphone span img{ margin-right: 5px; position: relative;top: 5px; }
+/****数据适配****/
+/*@media screen and (max-width: 980px) {
+	body{min-width: 500px;}
+	.divimg{width: 100%; margin: 50px auto 20px auto;}
+	.divimg img{width: 70%;}
+	.order-select{width: 50%;}
+	.download{width: 20%;}
+    .downloadup-st2{width: 20%;}
+	.divfootsaddphone{display: none;}
+	.divfootsConust{margin-bottom: 10px;}
+}*/
+/*@media screen and (max-width: 580px) {
+
+}*/
+
+
+.myShowRemrk {
+    font-size:12px;
+    margin:80px auto 0px auto;
+    line-height:30px;   
+    width:540px;
+}

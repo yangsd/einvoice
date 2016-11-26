@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="off">
+    <properties>
+        <property name="logdir">${sys:catalina.base}/logs</property>
+        <!-- 日志切割的最小单位 -->
+        <property name="EVERY_FILE_SIZE">100M</property>
+    </properties>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %level [%file] - %msg%n" />
+        </Console>
+        <RollingFile name="RollingFile"
+            fileName="${logdir}/shiro.log"
+            filePattern="${logdir}/shiro.%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %level [%C{36}.%M] - %msg%n" />
+            <Filters>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}" />
+        </RollingFile>
+        <!-- 只显示error级别的信息 -->
+        <RollingFile name="RollingFileError"
+            fileName="${logdir}/error.log"
+            filePattern="${logdir}/error-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss.SSS} [%thread] %level [%C{36}.%M:%L] - %msg%xEx%n" />
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}" />
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <Logger name="com.wangzhixuan" level="info" />
+        <Root level="WARN" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+            <AppenderRef ref="RollingFileError" />
+        </Root>
+    </loggers>
+</configuration>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>查询电子发票</title>
+</head>
+<body>
+ <form  action="query" method="post">
+     <table>
+        <tr>
+            <td>商户编码</td><td><input name="merchant_code" value="SHBM20161025"/></td> <td>商户名称</td><td><input name="merchant_name" value="测试商户"/> </td>
+        </tr>
+         <tr>
+             <td>商户订单号</td><td><input name="order_no" value="DD20161031"/></td> <td>通讯key</td><td><input name="key" value="123"/> </td>
+         </tr>
+     </table>
+     <input type="submit"/>
+ </form>
+
+</body>
+</html>

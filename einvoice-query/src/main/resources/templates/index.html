@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>江财电子发票平台</title>
+
+    <link href="/css/mycss.css" th:href="@{/css/mycss.css}" rel="stylesheet" type="text/css"/>
+    <script src="/js/jquery-3.0.0.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <link rel="icon" th:href="@{/image/favicon.ico}" type="image/x-icon"/>
+</head>
+<body>
+    <div class="epmaindiv" style="margin-top: 172px;">
+        <div class="divimg"><img th:src="@{/image/logo.jpg}" alt=""/></div>
+        <div class="divbtncheck">
+            <form id="search" action="/search" method="post">
+                <input type="text" class="order-select" name="orderno" value="" id="mytxtorder" onblur="CheckLenght()" placeholder="输入订单号"/>
+            </form>
+                <input type="button" class="download" name="btnsearch" value="查询" id="btnclick"/>
+        </div>
+    </div>
+    <div class="myShowRemrk">
+        <p>温馨提示：</p>
+        <p style="color:#f00;">
+            1、PC端建议使用IE9及以上、chrome、adobe reader、Safari浏览器进行电子发票预览与打印。
+        </p>
+        <p>
+            2、“订单号”请使用购物网站生成的订单号，或者您接收到电子发票开具通知短信消息中的订单号。
+        </p>
+        <p>
+            3、电子发票真伪查验请到国税总局全国增值税发票查询平台<a href="https://inv-veri.chinatax.gov.cn/" target="_blank">inv-veri.chinatax.gov.cn</a>进行查验。
+        </p>
+    </div>
+    <div class="divfoot" style="margin-top: 332px;">
+        <div class="divfootsConust">
+            <a href="http://jc.gs/" target="_blank">联系我们</a>|<a href="http://jc.gs/" target="_blank">关于我们</a>|<a href="http://jc.gs/" target="_blank">法律声明</a>
+        </div>
+        
+        <p>惠州江财科技有限公司 版权所有 Copyright © 2013</p>
+    </div>
+
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+        var OrderNum = "";
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) {
+                $("#btnclick").click(function(){
+                    $("#search").submit();
+                });
+            }
+        };
+    $("#btnclick").click(function(){
+        $("#search").submit();
+    });
+    //console.log(CurrHeight);
+    function CheckLenght() {
+        $("#btnclick").bind("click", function () {
+            var txtvaluse = $("#mytxtorder").val();
+
+            if (txtvaluse.length > 35) {
+                alert("您输入的订单号长度超过了限制");
+                return false;
+            }
+        });
+    }
+
+    /*]]>*/
+</script>
+
+</body></html>
